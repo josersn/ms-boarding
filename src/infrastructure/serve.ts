@@ -1,5 +1,7 @@
 import fastify, { FastifyInstance as httpServerInstance } from "fastify";
+import { bootstrap } from "fastify-decorators";
 import { IncomingMessage, Server, ServerResponse } from "http";
+import { resolve } from "path";
 
 
 export type httpServer = httpServerInstance<Server, IncomingMessage, ServerResponse>;
@@ -21,6 +23,11 @@ export default async () => {
     await app.register(require('@fastify/cors'), {
         origin: "*"
     });
+
+    await app.register(bootstrap, {
+        directory: resolve(__dirname),
+        mask: /\.controller\.[j|t]s$/
+    })
 
     app.get("/", async (req, reply) => {
         reply.status(200).send("Welcome to Onboarding")
