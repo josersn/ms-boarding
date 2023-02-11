@@ -1,3 +1,5 @@
+import { Company } from "../../entities/company";
+
 interface ICompanyRepository {
     create(company: CompanyDTO): Promise<Company>
     findBy(where: any): Promise<Company | undefined>
