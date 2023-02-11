@@ -21,7 +21,7 @@ describe("Create delivery test", () => {
         orderService = new OrderService(orderRepository);
         volumeService = new VolumeService(volumeRepository);
         useCase = new CreateDeliveryUseCase(orderService, volumeService);
-    })
+    });
 
     it("Should be able to create a delivery", async () => {
 
@@ -29,6 +29,7 @@ describe("Create delivery test", () => {
             document: "28113589000153",
             email: "jose.ramos@deliveryemail.com",
             name: "José Ramos",
+            companyId: 1,
             volumes: 1,
             address: "Avenida Paulista",
             number: "1000",
@@ -43,8 +44,8 @@ describe("Create delivery test", () => {
         }
 
         const result = await useCase.exec(data);
-
+        console.log(result)
         expect(result).toBeTruthy();
 
-    })
+    });
 })
