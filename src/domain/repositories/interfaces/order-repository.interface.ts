@@ -6,7 +6,6 @@ interface IOrderRepository {
 
 interface OrderDTO {
     companyId: number;
-    addressId: number;
     status: OrderStatus;
     email: string;
     name: string;

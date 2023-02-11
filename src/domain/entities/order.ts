@@ -21,7 +21,7 @@ class Order {
     city: string;
     state: string;
     zipCode: string;
-    active: number;
+    active: boolean;
 }
 
 export { Order, OrderStatus }

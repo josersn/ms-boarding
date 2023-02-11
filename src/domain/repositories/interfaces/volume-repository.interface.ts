@@ -1,7 +1,7 @@
 import { Volume, VolumeStatus } from "../../entities/volume";
 
 interface IVolumeRepository {
-    create(volume): Promise<Volume>
+    create(volume: VolumeDTO): Promise<Volume>
 }
 
 interface VolumeDTO {

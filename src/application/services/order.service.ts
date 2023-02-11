@@ -16,4 +16,4 @@ class OrderService implements IOrderService {
 
 }
 
-export { IOrderService, IOrderRepository }
+export { IOrderService, OrderService }
