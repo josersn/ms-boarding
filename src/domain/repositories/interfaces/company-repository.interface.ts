@@ -1,5 +1,6 @@
 interface ICompanyRepository {
     create(company: CompanyDTO): Promise<Company>
+    findBy(where: any): Promise<Company | undefined>
 }
 
 interface CompanyDTO {

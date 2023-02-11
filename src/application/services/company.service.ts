@@ -2,6 +2,7 @@ import { CompanyDTO, ICompanyRepository } from "../../domain/repositories/interf
 
 interface ICompanyService {
     createCompany(company: CompanyDTO): Promise<Company>
+    getCompanyByDocument(document: string): Promise<Company | undefined>
 }
 
 class CompanyService implements ICompanyService {
@@ -10,6 +11,14 @@ class CompanyService implements ICompanyService {
 
     async createCompany(company: CompanyDTO): Promise<Company> {
         return this.companyRepository.create(company);
+    }
+
+    async getCompanyByDocument(document: string): Promise<Company | undefined> {
+        return this.companyRepository.findBy({
+            where: {
+                document
+            }
+        });
     }
 }
 

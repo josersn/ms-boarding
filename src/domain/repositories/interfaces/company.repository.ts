@@ -19,6 +19,13 @@ class CompanyRepository implements ICompanyRepository {
 
         return company;
     }
+
+    async findBy({ where }: any): Promise<Company | undefined> {
+        const key = Object.keys(where)[0];
+        const value = Object.values(where)[0];
+
+        return this.companies.find(company => company[key] === value);
+    }
 }
 
 export { CompanyRepository }
