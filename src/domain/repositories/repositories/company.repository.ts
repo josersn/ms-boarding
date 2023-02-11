@@ -1,3 +1,4 @@
+import { Company } from "../../entities/company";
 import { CompanyDTO, ICompanyRepository } from "../interfaces/company-repository.interface";
 
 class CompanyRepository implements ICompanyRepository {

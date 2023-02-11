@@ -6,3 +6,5 @@ class Company {
     email: string;
     active: boolean;
 }
+
+export { Company }
