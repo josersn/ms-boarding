@@ -12,6 +12,11 @@ interface OrderDTO {
     name: string;
     volumes: number;
     dueDate: Date;
+    address: string;
+    number: string;
+    city: string;
+    state: string;
+    zipCode: string;
 };
 
 export { IOrderRepository, OrderDTO };

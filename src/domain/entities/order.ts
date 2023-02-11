@@ -11,12 +11,16 @@ enum OrderStatus {
 class Order {
     id: number;
     companyId: number;
-    addressId: number;
     status: OrderStatus;
     email: string;
     name: string;
     volumes: number;
     dueDate: Date;
+    address: string;
+    number: string;
+    city: string;
+    state: string;
+    zipCode: string;
     active: number;
 }
 
