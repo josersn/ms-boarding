@@ -44,7 +44,6 @@ describe("Create delivery test", () => {
         }
 
         const result = await useCase.exec(data);
-        console.log(result)
         expect(result).toBeTruthy();
 
     });
