@@ -5,7 +5,8 @@ enum OrderStatus {
     REJECTED = 'REJECTED',
     DELIVERED = 'DELIVERED',
     TRANSFER = 'TRANSFER',
-    DELIVERY = 'DELIVERY'
+    DELIVERY = 'DELIVERY',
+    COLLECT = 'COLLECT',
 }
 
 class Order {

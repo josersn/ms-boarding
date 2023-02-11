@@ -12,7 +12,8 @@ enum VolumeStatus {
     SEPARATION = 'SEPARATION',
     DELIVERED = 'DELIVERED',
     TRANSFER = 'TRANSFER',
-    DELIVERY = 'DELIVERY'
+    DELIVERY = 'DELIVERY',
+    COLLECT = 'COLLECT',
 }
 
 export { Volume, VolumeStatus }

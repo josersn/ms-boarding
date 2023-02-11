@@ -32,7 +32,7 @@ class CreateDeliveryUseCase implements ICreateDeliveryUseCase {
     async exec({ items, ...payload }: IRequest): Promise<any> {
 
         const order = await this.orderService.createOrder({
-            status: OrderStatus.RECEIVED,
+            status: OrderStatus.COLLECT,
             ...payload,
             dueDate: new Date()
         });
@@ -42,7 +42,7 @@ class CreateDeliveryUseCase implements ICreateDeliveryUseCase {
             items.map(async item => {
                 return this.volumeService.createVolume({
                     orderId: order.id,
-                    status: VolumeStatus.RECEIVED,
+                    status: VolumeStatus.COLLECT,
                     volume: item.volume
                 })
             })
