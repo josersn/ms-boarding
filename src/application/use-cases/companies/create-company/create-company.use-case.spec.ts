@@ -1,5 +1,5 @@
 import { ICompanyRepository } from "../../../../domain/repositories/interfaces/company-repository.interface";
-import { CompanyRepository } from "../../../../domain/repositories/interfaces/company.repository";
+import { CompanyRepository } from "../../../../domain/repositories/repositories/company.repository";
 import { CompanyService, ICompanyService } from "../../../services/company.service";
 import { CreateCompanyUseCase, IUseCase } from "./create-company.use-case.";
 

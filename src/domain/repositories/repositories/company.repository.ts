@@ -1,4 +1,4 @@
-import { CompanyDTO, ICompanyRepository } from "./company-repository.interface";
+import { CompanyDTO, ICompanyRepository } from "../interfaces/company-repository.interface";
 
 class CompanyRepository implements ICompanyRepository {
 
