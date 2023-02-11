@@ -19,3 +19,5 @@ class Order {
     dueDate: Date;
     active: number;
 }
+
+export { Order, OrderStatus }

@@ -1,5 +1,6 @@
 import { CompanyDTO } from "../../../../domain/repositories/interfaces/company-repository.interface";
 import { ICompanyService } from "../../../services/company.service"
+import { IUseCase } from "../../interfaces/use-case.interface";
 
 interface ICompanyRequest {
     name: string;
@@ -8,11 +9,9 @@ interface ICompanyRequest {
     email: string;
 }
 
-interface IUseCase {
-    exec(data: ICompanyRequest): Promise<any>
-}
+type ICreateCompanyUseCase = IUseCase<ICompanyRequest, CompanyDTO>
 
-class CreateCompanyUseCase implements IUseCase {
+class CreateCompanyUseCase implements ICreateCompanyUseCase {
 
     constructor(private companyService: ICompanyService) { }
 
@@ -29,4 +28,4 @@ class CreateCompanyUseCase implements IUseCase {
     }
 }
 
-export { CreateCompanyUseCase, ICompanyRequest, IUseCase }
+export { CreateCompanyUseCase, ICompanyRequest, ICreateCompanyUseCase }

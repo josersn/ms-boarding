@@ -10,4 +10,9 @@ enum VolumeStatus {
     RECEIVED = 'RECEIVED',
     LABELING = 'LABELING',
     SEPARATION = 'SEPARATION',
+    DELIVERED = 'DELIVERED',
+    TRANSFER = 'TRANSFER',
+    DELIVERY = 'DELIVERY'
 }
+
+export { Volume, VolumeStatus }
