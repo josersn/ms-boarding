@@ -3,9 +3,9 @@ import { Controller, POST } from "fastify-decorators";
 import { CompanyService } from "../../application/services/company.service";
 import { UserService } from "../../application/services/user.service";
 import { CreateCompanyUser } from "../../application/use-cases/user/create-company-user/create-company-user.user-case";
-import { UserRepository } from "../../domain/repositories/in-memory/user.repository";
 import { Encryption } from "../adapters/encryption/implementations";
 import { CompanyRepository } from "../database/prisma/repositories/company.repository.prisma";
+import { UserRepository } from "../database/prisma/repositories/user.repository.prisma";
 
 @Controller("user")
 export default class UserController {

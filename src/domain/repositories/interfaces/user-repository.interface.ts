@@ -2,7 +2,7 @@ import { User } from "../../entities/user";
 
 interface IUserRepository {
     create(data: UserDTO): Promise<User>;
-    findBy(where: any): Promise<User | undefined>;
+    findBy(where: any): Promise<User | undefined | null>;
 }
 
 interface UserDTO {

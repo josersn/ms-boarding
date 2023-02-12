@@ -23,7 +23,7 @@ class UserRepository implements IUserRepository {
         return user;
     }
 
-    async findBy({ where }: any): Promise<User | undefined> {
+    async findBy({ where }: any): Promise<User | undefined | null> {
         const key = Object.keys(where)[0];
         const value = Object.values(where)[0];
 
