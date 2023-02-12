@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { Controller, POST } from "fastify-decorators";
 import { CompanyService } from "../../application/services/company.service";
 import { CreateCompanyUseCase } from "../../application/use-cases/companies/create-company/create-company.use-case.";
-import { CompanyRepository } from "../../domain/repositories/in-memory/company.repository";
+import { CompanyRepository } from "../database/prisma/repositories/company.repository.prisma";
 
 @Controller("company")
 export default class CompanyController {
