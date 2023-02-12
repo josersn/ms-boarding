@@ -2,6 +2,7 @@ import { ICompanyRepository } from "../../../../domain/repositories/interfaces/c
 import { CompanyRepository } from "../../../../domain/repositories/in-memory/company.repository";
 import { CompanyService, ICompanyService } from "../../../services/company.service";
 import { CreateCompanyUseCase, ICreateCompanyUseCase } from "./create-company.use-case.";
+import ApiError from "../../../core/api-error";
 
 let useCase: ICreateCompanyUseCase;
 let service: ICompanyService;
@@ -37,6 +38,6 @@ describe("Create company use case", () => {
         await useCase.exec(company);
 
 
-        await expect(useCase.exec(company)).rejects.toThrowError(Error("Document already used"));
+        await expect(useCase.exec(company)).rejects.toThrowError(new ApiError(403, 403, "Company already created"));
     });
 })

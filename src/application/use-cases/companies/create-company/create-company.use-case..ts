@@ -1,4 +1,5 @@
 import { CompanyDTO } from "../../../../domain/repositories/interfaces/company-repository.interface";
+import ApiError from "../../../core/api-error";
 import { ICompanyService } from "../../../services/company.service"
 import { IUseCase } from "../../interfaces/use-case.interface";
 
@@ -20,7 +21,7 @@ class CreateCompanyUseCase implements ICreateCompanyUseCase {
         const companyAlreadyExists = await this.companyService.getCompanyByDocument(data.document);
 
         if (companyAlreadyExists) {
-            throw new Error("Document already used");
+            throw new ApiError(403, 403, "Company already created");
         }
 
 

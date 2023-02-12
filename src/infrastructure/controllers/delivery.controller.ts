@@ -26,10 +26,10 @@ export default class DeliveryController {
 
             })
 
-        } catch (error) {
-            return reply.status(500).send({
+        } catch (error: any) {
+            return reply.status(error.code || 500).send({
                 error: true,
-                message: "Internal serve error"
+                message: error.message || "Internal server error"
             })
         }
     }
