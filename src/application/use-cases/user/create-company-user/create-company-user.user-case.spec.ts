@@ -41,9 +41,18 @@ describe("Create a Company User test", () => {
         }
 
         const user = await useCase.exec(data);
-
         expect(user).toBeTruthy();
         expect(user).toHaveProperty("id")
 
+    });
+
+    it("Should not be able to create a user with not exists company", async () => {
+        const data = {
+            document: "MOCK_DOCUMENT",
+            email: "logistics@amazon.com",
+            password: "amazon.logistics"
+        }
+
+        await expect(useCase.exec(data)).rejects.toThrowError(Error("Company not found"));
     })
 })

@@ -20,14 +20,19 @@ class CreateCompanyUser implements ICreateCompanyUser {
         email,
         password
     }: IRequest): Promise<UserDTO> {
+
         const company = await this.companyService.getCompanyByDocument(document);
+
+        if (!company) {
+            throw new Error("Company not found");
+        }
 
         const user = await this.userService.createUser({
             companyId: company!.id,
             email,
             password
         });
-        
+
         return user;
 
     }
