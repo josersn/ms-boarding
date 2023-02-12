@@ -2,6 +2,8 @@ import { CompanyRepository } from "../../../../domain/repositories/in-memory/com
 import { UserRepository } from "../../../../domain/repositories/in-memory/user.repository";
 import { ICompanyRepository } from "../../../../domain/repositories/interfaces/company-repository.interface";
 import { IUserRepository } from "../../../../domain/repositories/interfaces/user-repository.interface";
+import { Encryption } from "../../../../infrastructure/adapters/encryption/implementations";
+import { IEncryption } from "../../../../infrastructure/adapters/encryption/interface";
 import ApiError from "../../../core/api-error";
 import { CompanyService, ICompanyService } from "../../../services/company.service";
 import { IUserService, UserService } from "../../../services/user.service";
@@ -10,6 +12,7 @@ import { CreateCompanyUser, ICreateCompanyUser } from "./create-company-user.use
 let useCase: ICreateCompanyUser;
 let service: IUserService;
 let repository: IUserRepository;
+let encryption: IEncryption;
 let companyRepository: ICompanyRepository;
 let companyService: ICompanyService;
 
@@ -30,7 +33,8 @@ describe("Create a Company User test", () => {
 
         // under test
         repository = new UserRepository();
-        service = new UserService(repository);
+        encryption = new Encryption();
+        service = new UserService(repository, encryption);
         useCase = new CreateCompanyUser(service, companyService);
     });
 
@@ -67,5 +71,5 @@ describe("Create a Company User test", () => {
         await useCase.exec(data);
 
         await expect(useCase.exec(data)).rejects.toThrowError(new ApiError(403, 403, "E-mail already used"));
-    })
+    });
 })
