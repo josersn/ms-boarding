@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Running npm install
-RUN npm install && npm install -g ts-node
+RUN npm install && npm install -g ts-node && npm install prisma@4.3.1 -g
 
 # Copy the rest of your app's source code from your host to your image filesystem.
 COPY . .

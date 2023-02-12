@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id        Int      @id @default(autoincrement())
+  name      String
+  document  String
+  phone     String
+  email     String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User[]
+  Order     Order[]
+
+  @@map("Companies")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  companyId Int
+  email     String
+  password  String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  company   Company  @relation(fields: [companyId], references: [id])
+
+  @@map("Users")
+}
+
+model Order {
+  id        Int         @id @default(autoincrement())
+  companyId Int
+  status    OrderStatus
+  email     String
+  name      String
+  volumes   Int
+  dueDate   DateTime
+  address   String
+  number    String
+  city      String
+  state     String
+  zipCode   String
+  active    Boolean     @default(true)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  company   Company     @relation(fields: [companyId], references: [id])
+  Volume    Volume[]
+
+  @@map("Orders")
+}
+
+model Volume {
+  id        Int      @id @default(autoincrement())
+  orderId   Int
+  status    Int
+  volume    Int
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  company   Order    @relation(fields: [orderId], references: [id])
+
+  @@map("Volumes")
+}
+
+enum OrderStatus {
+  CANCELED
+  PENDING
+  RECEIVED
+  REJECTED
+  DELIVERED
+  TRANSFER
+  DELIVERY
+  COLLECT
+}

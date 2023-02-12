@@ -3,7 +3,7 @@ class Volume {
     orderId: number;
     status: VolumeStatus;
     volume: number;
-    active: number;
+    active: boolean;
 }
 
 enum VolumeStatus {
