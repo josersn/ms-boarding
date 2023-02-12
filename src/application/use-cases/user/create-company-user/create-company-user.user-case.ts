@@ -27,6 +27,12 @@ class CreateCompanyUser implements ICreateCompanyUser {
             throw new Error("Company not found");
         }
 
+        const userFound = await this.userService.getUserByEmail(email);
+
+        if(userFound) {
+            throw new Error("E-mail already used");
+        }
+
         const user = await this.userService.createUser({
             companyId: company!.id,
             email,

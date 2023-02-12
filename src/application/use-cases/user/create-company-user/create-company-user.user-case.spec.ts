@@ -54,5 +54,17 @@ describe("Create a Company User test", () => {
         }
 
         await expect(useCase.exec(data)).rejects.toThrowError(Error("Company not found"));
+    });
+
+    it("Should not be able to create a user with e-mail is already register", async () => {
+        const data = {
+            document: "28113589000153",
+            email: "logistics@amazon.com",
+            password: "amazon.logistics"
+        }
+
+        await useCase.exec(data);
+
+        await expect(useCase.exec(data)).rejects.toThrowError(Error("E-mail already used"));
     })
 })

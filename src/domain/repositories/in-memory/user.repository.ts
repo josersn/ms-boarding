@@ -5,7 +5,7 @@ class UserRepository implements IUserRepository {
 
     private users: User[];
 
-    constructor () {
+    constructor() {
         this.users = []
     }
 
@@ -21,6 +21,16 @@ class UserRepository implements IUserRepository {
 
 
         return user;
+    }
+
+    async findBy({ where }: any): Promise<User | undefined> {
+        const key = Object.keys(where)[0];
+        const value = Object.values(where)[0];
+
+        let user = this.users.find(user => user[key] === value);
+
+        return user;
+
     }
 
 }
