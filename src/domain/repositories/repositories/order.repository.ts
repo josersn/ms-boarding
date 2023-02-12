@@ -12,7 +12,7 @@ class OrderRepository implements IOrderRepository {
 
     async create(data: OrderDTO): Promise<Order> {
         const order: Order = {
-            id: 1,
+            id: Math.floor(Math.random() * 2),
             ...data,
             active: true
         }
