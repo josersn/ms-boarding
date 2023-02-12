@@ -2,6 +2,7 @@ import { CompanyRepository } from "../../../../domain/repositories/in-memory/com
 import { UserRepository } from "../../../../domain/repositories/in-memory/user.repository";
 import { ICompanyRepository } from "../../../../domain/repositories/interfaces/company-repository.interface";
 import { IUserRepository } from "../../../../domain/repositories/interfaces/user-repository.interface";
+import ApiError from "../../../core/api-error";
 import { CompanyService, ICompanyService } from "../../../services/company.service";
 import { IUserService, UserService } from "../../../services/user.service";
 import { CreateCompanyUser, ICreateCompanyUser } from "./create-company-user.user-case";
@@ -53,7 +54,7 @@ describe("Create a Company User test", () => {
             password: "amazon.logistics"
         }
 
-        await expect(useCase.exec(data)).rejects.toThrowError(Error("Company not found"));
+        await expect(useCase.exec(data)).rejects.toThrowError(new ApiError(404, 404, "Company not found"));
     });
 
     it("Should not be able to create a user with e-mail is already register", async () => {
@@ -65,6 +66,6 @@ describe("Create a Company User test", () => {
 
         await useCase.exec(data);
 
-        await expect(useCase.exec(data)).rejects.toThrowError(Error("E-mail already used"));
+        await expect(useCase.exec(data)).rejects.toThrowError(new ApiError(403, 403, "E-mail already used"));
     })
 })

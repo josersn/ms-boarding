@@ -1,4 +1,5 @@
 import { UserDTO } from "../../../../domain/repositories/interfaces/user-repository.interface";
+import ApiError from "../../../core/api-error";
 import { ICompanyService } from "../../../services/company.service";
 import { IUserService } from "../../../services/user.service";
 import { IUseCase } from "../../interfaces/use-case.interface";
@@ -24,13 +25,13 @@ class CreateCompanyUser implements ICreateCompanyUser {
         const company = await this.companyService.getCompanyByDocument(document);
 
         if (!company) {
-            throw new Error("Company not found");
+            throw new ApiError(404, 404, "Company not found")
         }
 
         const userFound = await this.userService.getUserByEmail(email);
 
         if(userFound) {
-            throw new Error("E-mail already used");
+            throw new ApiError(403, 403, "E-mail already used")
         }
 
         const user = await this.userService.createUser({
