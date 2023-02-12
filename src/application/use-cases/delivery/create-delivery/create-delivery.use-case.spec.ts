@@ -1,7 +1,7 @@
 import { IOrderRepository } from "../../../../domain/repositories/interfaces/order-repository.interface";
 import { IVolumeRepository } from "../../../../domain/repositories/interfaces/volume-repository.interface";
-import { OrderRepository } from "../../../../domain/repositories/repositories/order.repository";
-import { VolumeRepository } from "../../../../domain/repositories/repositories/volume.repository";
+import { OrderRepository } from "../../../../domain/repositories/in-memory/order.repository";
+import { VolumeRepository } from "../../../../domain/repositories/in-memory/volume.repository";
 import { IOrderService, OrderService } from "../../../services/order.service";
 import { IVolumeService, VolumeService } from "../../../services/volume.service";
 import { CreateDeliveryUseCase, ICreateDeliveryUseCase } from "./create-delivery.use-case";

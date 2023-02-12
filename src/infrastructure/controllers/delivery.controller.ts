@@ -3,8 +3,8 @@ import { FastifyReply } from "fastify/types/reply";
 import { OrderService } from "../../application/services/order.service";
 import { VolumeService } from "../../application/services/volume.service";
 import { CreateDeliveryUseCase } from "../../application/use-cases/delivery/create-delivery/create-delivery.use-case";
-import { OrderRepository } from "../../domain/repositories/repositories/order.repository";
-import { VolumeRepository } from "../../domain/repositories/repositories/volume.repository";
+import { OrderRepository } from "../../domain/repositories/in-memory/order.repository";
+import { VolumeRepository } from "../../domain/repositories/in-memory/volume.repository";
 
 @Controller("delivery")
 export default class DeliveryController {
