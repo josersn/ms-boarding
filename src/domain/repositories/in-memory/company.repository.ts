@@ -11,7 +11,7 @@ class CompanyRepository implements ICompanyRepository {
 
     async create(data: CompanyDTO): Promise<Company> {
         const company = {
-            id: Math.floor(Math.random() * 2),
+            id: Math.floor(Math.random() * 100),
             ...data,
             active: true
         }

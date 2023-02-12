@@ -12,7 +12,7 @@ class VolumeRepository implements IVolumeRepository {
 
     async create(data: any): Promise<Volume> {
         const volume: Volume = {
-            id: Math.floor(Math.random() * 2),
+            id: Math.floor(Math.random() * 100),
             ...data
         }
 
