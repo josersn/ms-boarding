@@ -4,6 +4,8 @@ import { ICompanyRepository } from "../../../../domain/repositories/interfaces/c
 import { IUserRepository } from "../../../../domain/repositories/interfaces/user-repository.interface";
 import { Encryption } from "../../../../infrastructure/adapters/encryption/implementations";
 import { IEncryption } from "../../../../infrastructure/adapters/encryption/interface";
+import { Tokenization } from "../../../../infrastructure/adapters/tokenization/implementations";
+import { ITokenization } from "../../../../infrastructure/adapters/tokenization/interfaces";
 import ApiError from "../../../core/api-error";
 import { CompanyService, ICompanyService } from "../../../services/company.service";
 import { IUserService, UserService } from "../../../services/user.service";
@@ -15,6 +17,7 @@ let repository: IUserRepository;
 let encryption: IEncryption;
 let companyRepository: ICompanyRepository;
 let companyService: ICompanyService;
+let tokenization: ITokenization;
 
 describe("Create a Company User test", () => {
 
@@ -34,7 +37,8 @@ describe("Create a Company User test", () => {
         // under test
         repository = new UserRepository();
         encryption = new Encryption();
-        service = new UserService(repository, encryption);
+        tokenization = new Tokenization(String(process.env.SECRET), Number(process.env.EXPIRES_IN));
+        service = new UserService(repository, encryption, tokenization);
         useCase = new CreateCompanyUser(service, companyService);
     });
 
@@ -72,4 +76,19 @@ describe("Create a Company User test", () => {
 
         await expect(useCase.exec(data)).rejects.toThrowError(new ApiError(403, 403, "E-mail already used"));
     });
+
+    it("Should return a different password od was send", async () => {
+        const data = {
+            document: "28113589000153",
+            email: "logistics@amazon.com",
+            password: "amazon.logistics"
+        }
+
+        const user = await useCase.exec(data);
+
+        const isEqual = user.password === data.password;
+
+        expect(isEqual).toBeFalsy();
+
+    })
 })

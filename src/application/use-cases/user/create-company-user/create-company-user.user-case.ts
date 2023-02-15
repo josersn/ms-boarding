@@ -40,9 +40,6 @@ class CreateCompanyUser implements ICreateCompanyUser {
             password
         });
         
-        // @ts-expect-error
-        delete user.password;
-
         return user;
 
     }
