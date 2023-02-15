@@ -30,7 +30,7 @@ class AuthLoginUserCase implements IAuthLoginUseCase {
             throw new ApiError(404, 404, "User not found")
         }
 
-        const token = await this.userService.generateToken({ id: user.id, email: user.email });
+        const token = await this.userService.generateToken({ id: user.id, email: user.email, companyId: user.companyId });
 
         return {
             token
