@@ -18,7 +18,6 @@ class JsonWebTokenProvider implements ITokenization {
         })
     }
 
-
     async verify(value: any): Promise<any | boolean> {
         try {
             return jwt.verify(value, this.secret, (err, decode) => {
