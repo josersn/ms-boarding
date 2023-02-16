@@ -58,14 +58,14 @@ model Order {
 }
 
 model Volume {
-  id        Int      @id @default(autoincrement())
+  id        Int          @id @default(autoincrement())
   orderId   Int
-  status    Int
+  status    VolumeStatus
   volume    Int
-  active    Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  company   Order    @relation(fields: [orderId], references: [id])
+  active    Boolean      @default(true)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  company   Order        @relation(fields: [orderId], references: [id])
 
   @@map("Volumes")
 }
@@ -75,6 +75,16 @@ enum OrderStatus {
   PENDING
   RECEIVED
   REJECTED
+  DELIVERED
+  TRANSFER
+  DELIVERY
+  COLLECT
+}
+
+enum VolumeStatus {
+  RECEIVED
+  LABELING
+  SEPARATION
   DELIVERED
   TRANSFER
   DELIVERY
