@@ -18,6 +18,12 @@ class CreateTagUseCase implements ICreateTagUseCase {
 
     async exec({ volumeId, orderId, user }: IRequest): Promise<any> {
 
+        const order = await this.orderService.findById(orderId);
+
+        if (!order) {
+            throw new ApiError(404, 404, "Volume not found");
+        }
+
         const volume = await this.volumeService.findById(volumeId);
 
         return volume;

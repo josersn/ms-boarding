@@ -21,6 +21,13 @@ class OrderRepository implements IOrderRepository {
 
         return order;
     }
+
+    async findBy({ where }: any): Promise<Order | undefined> {
+        const key = Object.keys(where)[0];
+        const value = Object.values(where)[0];
+
+        return this.orders.find(company => company[key] === value);
+    }
 }
 
 export { OrderRepository }

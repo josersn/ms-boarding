@@ -3,6 +3,7 @@ import { IOrderRepository, OrderDTO } from "../../domain/repositories/interfaces
 
 interface IOrderService {
     createOrder(order: OrderDTO): Promise<Order>
+    findById(where: any): Promise<Order | undefined | null>
 }
 
 class OrderService implements IOrderService {
@@ -12,6 +13,14 @@ class OrderService implements IOrderService {
 
     async createOrder(order: OrderDTO): Promise<Order> {
         return this.orderRepository.create(order)
+    }
+
+    async findById(volumeId: number): Promise<Order | null | undefined> {
+        return this.orderRepository.findBy({
+            where: {
+                id: volumeId
+            }
+        });
     }
 
 }

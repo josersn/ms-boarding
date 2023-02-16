@@ -2,6 +2,7 @@ import { Order, OrderStatus } from "../../entities/order";
 
 interface IOrderRepository {
     create(order: OrderDTO): Promise<Order>
+    findBy(where: any): Promise<Order | undefined | null>
 };
 
 interface OrderDTO {

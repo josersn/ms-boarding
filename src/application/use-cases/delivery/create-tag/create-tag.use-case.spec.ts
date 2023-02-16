@@ -71,4 +71,21 @@ describe("Create Tag to volume", () => {
         expect(tag).toBeTruthy();
     });
 
+    it("Should not be able to return a tag if order does not exists", async () => {
+
+        const { volumes, ...order } = await createDeliveryUseCase.exec({
+            delivery: request,
+            user
+        });
+
+        const volume = volumes[0];
+
+        const data = {
+            orderId: 0,
+            volumeId: volume.id,
+            user
+        }
+
+        await expect(useCase.exec(data)).rejects.toThrowError(new ApiError(404,404, "Volume not found"));
+    })
 })
