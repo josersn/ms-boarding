@@ -1,3 +1,4 @@
+
 import { OrderStatus } from "../../../../domain/entities/order";
 import { VolumeStatus } from "../../../../domain/entities/volume";
 import { IOrderService } from "../../../services/order.service";
@@ -5,6 +6,11 @@ import { IVolumeService } from "../../../services/volume.service";
 import { IUseCase } from "../../interfaces/use-case.interface";
 
 interface IRequest {
+    delivery: IDelivery,
+    user: any
+}
+
+interface IDelivery {
     document: string,
     companyId: number,
     email: string,
@@ -29,7 +35,9 @@ class CreateDeliveryUseCase implements ICreateDeliveryUseCase {
 
     constructor(private orderService: IOrderService, private volumeService: IVolumeService) { }
 
-    async exec({ items, ...payload }: IRequest): Promise<any> {
+    async exec({ delivery: { items, ...payload }, user }: IRequest): Promise<any> {
+
+        payload.companyId = user.companyId;
 
         const order = await this.orderService.createOrder({
             status: OrderStatus.COLLECT,
@@ -48,12 +56,11 @@ class CreateDeliveryUseCase implements ICreateDeliveryUseCase {
             })
         )
 
-
-
         return {
             ...order,
             volumes
         };
+
     }
 }
 

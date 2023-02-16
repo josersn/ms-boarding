@@ -24,6 +24,11 @@ describe("Create delivery test", () => {
     });
 
     it("Should be able to create a delivery", async () => {
+        const user = {
+            id: 1,
+            email: "mock_mail@mail.com",
+            companyId: 1
+        }
 
         const data = {
             document: "28113589000153",
@@ -43,7 +48,10 @@ describe("Create delivery test", () => {
             ],
         }
 
-        const result = await useCase.exec(data);
+        const result = await useCase.exec({
+            delivery: data,
+            user
+        });
         expect(result).toBeTruthy();
 
     });
