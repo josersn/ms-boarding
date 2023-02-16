@@ -24,11 +24,15 @@ class CreateTagUseCase implements ICreateTagUseCase {
             throw new ApiError(404, 404, "Volume not found");
         }
 
-        if(order.id !== orderId) {
-            throw new ApiError(404, 404, "Order not found");
+        if (order.companyId !== user.companyId) {
+            throw new ApiError(404, 404, "Volume not found");
         }
 
         const volume = await this.volumeService.findById(volumeId);
+
+        if (!volume) {
+            throw new ApiError(404, 404, "Volume not found");
+        }
 
         return volume;
     }
