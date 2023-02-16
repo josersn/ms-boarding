@@ -4,7 +4,7 @@ import { prismaClient } from "../index";
 
 class CompanyRepository implements ICompanyRepository {
 
-    create(company: CompanyDTO): Promise<Company> {
+    async create(company: CompanyDTO): Promise<Company> {
         return prismaClient.company.create({
             data: {
                 ...company
