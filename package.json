@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@types/amqplib": "^0.10.1",
     "@types/bcrypt": "^5.0.0",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.13.0",
@@ -19,6 +20,7 @@
     "@fastify/formbody": "^7.4.0",
     "@fastify/jwt": "^6.5.0",
     "@prisma/client": "^4.10.1",
+    "amqplib": "^0.10.3",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "fastify": "^4.13.0",
