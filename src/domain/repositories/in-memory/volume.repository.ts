@@ -21,6 +21,13 @@ class VolumeRepository implements IVolumeRepository {
         return volume;
     }
 
+    async findBy({ where }: any): Promise<Volume | undefined> {
+        const key = Object.keys(where)[0];
+        const value = Object.values(where)[0];
+
+        return this.volumes.find(company => company[key] === value);
+    }
+
 }
 
 export { VolumeRepository }

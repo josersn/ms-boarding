@@ -2,6 +2,7 @@ import { Volume, VolumeStatus } from "../../entities/volume";
 
 interface IVolumeRepository {
     create(volume: VolumeDTO): Promise<Volume>
+    findBy(where: any): Promise<Volume | undefined | null>
 }
 
 interface VolumeDTO {
