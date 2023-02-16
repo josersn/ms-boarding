@@ -12,3 +12,5 @@ class VolumeRepository implements IVolumeRepository {
         });
     }
 }
+
+export { VolumeRepository }

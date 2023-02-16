@@ -12,3 +12,5 @@ class OrderRepository implements IOrderRepository {
         })
     }
 }
+
+export { OrderRepository }
