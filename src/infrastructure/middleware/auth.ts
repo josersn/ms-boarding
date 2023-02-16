@@ -1,5 +1,5 @@
 import fastifyPlugin from "fastify-plugin";
-
+import { FastifyRequest, FastifyReply } from "fastify"
 
 
 const authMiddleware = fastifyPlugin(async function (fastify, options) {
@@ -15,14 +15,17 @@ const authMiddleware = fastifyPlugin(async function (fastify, options) {
         }
     });
 
-    fastify.decorate("authenticate", async function (request, reply) {
-        try {
-            await request.jwtVerify()
-        } catch (err) {
-            reply.send(err)
-        }
-    })
 });
 
+export async function authenticate(request: FastifyRequest, reply: FastifyReply) {
+    try {
+        const user = await request.jwtVerify();
 
-export { authMiddleware }
+        request.user = user;
+    } catch (error) {
+        return reply.send(error)
+    }
+}
+
+
+export default authMiddleware

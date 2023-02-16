@@ -1,4 +1,4 @@
-import { FastifyReply, FastifyRequest } from "fastify";
+import { FastifyReply } from "fastify";
 import { Controller, POST } from "fastify-decorators";
 import { CompanyService } from "../../application/services/company.service";
 import { CreateCompanyUseCase } from "../../application/use-cases/companies/create-company/create-company.use-case.";
